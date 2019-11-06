@@ -8,7 +8,7 @@ try {
     devMode = false;
     mongoose.connect(dbURI);
 } catch {
-    var dbURI = 'mongodb://localhost/FitnessApp';
+    var dbURI = 'mongodb://localhost/SecondFitnessApp';
     devMode = true;
     mongoose.connect(dbURI);
 }
