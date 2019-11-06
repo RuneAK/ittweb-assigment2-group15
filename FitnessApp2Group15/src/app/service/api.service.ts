@@ -19,6 +19,12 @@ export class ApiService {
       catchError(this.errorMgmt))
   }
 
+  login(data): Observable<any> {
+    let url = `${this.baseUri}/user/login`;
+    return this.http.post(url, data).pipe(
+      catchError(this.errorMgmt))
+  }
+
   // Error handling 
   errorMgmt(error: HttpErrorResponse) {
     let errorMessage = '';
