@@ -1,30 +1,21 @@
-<div>
-    <h1>{{title}}</h1>
+<div class="input-container">
     <form [formGroup]="loginForm" (ngSubmit)="login()">
-
-        <div class="form-group">
-            <label for="inputEmail">Email</label>
-            <input class="form-control" type="text" formControlName="email">
-            <!-- error -->
-            <div class="invalid-feedback" *ngIf="submitted && myForm.email.errors?.required">
+        <mat-form-field>
+                <input matInput placeholder="email" formControlName="email">
+        </mat-form-field>
+        <div class="invalid-feedback" *ngIf="submitted && myForm.email.errors?.required">
                 Enter your email.
             </div>
             <div class="invalid-feedback" *ngIf="submitted && myForm.email.errors?.pattern">
                 Enter valid email.
-            </div>
         </div>
-
-        <div class="form-group">
-                <label for="inputPassword">Password</label>
-                <input class="form-control" type="text" formControlName="password">
-                <!-- error -->
-                <div class="invalid-feedback" *ngIf="submitted && myForm.password.errors?.required">
-                    Password is required.
-                </div>
+        <mat-form-field>
+                <input matInput placeholder="password" formControlName="password">
+        </mat-form-field>
+        <div class="invalid-feedback" *ngIf="submitted && myForm.password.errors?.required">
+                Password is required.
         </div>
-
-        <div class="form-group">
-            <button class="btn btn-success btn-lg btn-block" type="submit">Login</button>
-        </div>
+        <br>
+        <button mat-stroked-button type="submit" color="accent">Login</button>
     </form>
 </div>

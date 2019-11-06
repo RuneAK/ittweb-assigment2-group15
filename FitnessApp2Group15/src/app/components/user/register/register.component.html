@@ -1,19 +1,48 @@
+<div class="input-container">
+    <form [formGroup]="registerForm" (ngSubmit)="register()">
+    <mat-form-field>
+        <input matInput placeholder="Name" formControlName="name">
+    </mat-form-field>
+    <div class="invalid-feedback" *ngIf="submitted && myForm.name.errors?.required">
+            Name is required.
+    </div>
+    <mat-form-field>
+            <input matInput placeholder="email" formControlName="email">
+    </mat-form-field>
+    <div class="invalid-feedback" *ngIf="submitted && myForm.email.errors?.required">
+            Enter your email.
+        </div>
+        <div class="invalid-feedback" *ngIf="submitted && myForm.email.errors?.pattern">
+            Enter valid email.
+    </div>
+    <mat-form-field>
+            <input matInput placeholder="password" formControlName="password">
+    </mat-form-field>
+    <div class="invalid-feedback" *ngIf="submitted && myForm.password.errors?.required">
+            Password is required.
+    </div>
+    <br>
+    <button mat-stroked-button type="submit" color="accent">Register</button>
+    </form>
+
+</div>
+
+<!--
 <div>
     <h1>{{title}}</h1>
     <form [formGroup]="registerForm" (ngSubmit)="register()">
         <div class="form-group">
             <label for="inputName">Name</label>
             <input class="form-control" type="text" formControlName="name">
-            <!-- error -->
             <div class="invalid-feedback" *ngIf="submitted && myForm.name.errors?.required">
-                Name is required.
+                    Name is required.
+                </div>
             </div>
-        </div>
+        
 
         <div class="form-group">
             <label for="inputEmail">Email</label>
             <input class="form-control" type="text" formControlName="email">
-            <!-- error -->
             <div class="invalid-feedback" *ngIf="submitted && myForm.email.errors?.required">
                 Enter your email.
             </div>
@@ -25,7 +54,6 @@
         <div class="form-group">
                 <label for="inputPassword">Password</label>
                 <input class="form-control" type="text" formControlName="password">
-                <!-- error -->
                 <div class="invalid-feedback" *ngIf="submitted && myForm.password.errors?.required">
                     Password is required.
                 </div>
@@ -36,3 +64,4 @@
         </div>
     </form>
 </div>
+-->
