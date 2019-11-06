@@ -20,13 +20,15 @@ const User = mongoose.model('User', UserSchema);
 // TODO: When saving goes well, just redirect to /login with user info.
 exports.createUser = async function(req, res){
     var user;
-    await bcrypt.hash(req.body.password, 10).then(async function(hash){
+    await bcrypt.hash(req.body.password, 10).then(async function(hash, error){
+        if (error){
+            throw error;
+        }
         user = new User({
             email: req.body.email,
             name: req.body.name,
             hashedPassword: hash
         })}
-        .catch(console.error).then(() => console.log('Hashing failed'))
     );
 
     try{
@@ -34,7 +36,7 @@ exports.createUser = async function(req, res){
     } catch (err){
         throw new Error();
     }
-};
+};0
 
 exports.findUser = async function(email) {
     return await User.findOne({ email: email }, function (err, user) {

@@ -14,6 +14,10 @@ exports.register = async function (req, res) {
             message: 'Error when registering user.',
         });
     }
+
+    return res.status(200).json({
+        message: 'Success'
+    });
 };
 
 exports.logout = async function (req, res) {
