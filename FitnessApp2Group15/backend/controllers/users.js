@@ -6,7 +6,7 @@ const mongoose = require('mongoose');
 
 exports.register = async function (req, res) {
     try {
-        User.createUser(req, res);
+        await User.createUser(req, res);
     }
     catch (err) {
         console.log(err);
