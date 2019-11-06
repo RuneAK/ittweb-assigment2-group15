@@ -9,8 +9,9 @@ exports.register = async function (req, res) {
         await User.createUser(req, res);
     }
     catch (err) {
+        console.log('Error when registering user.');
         return res.status(400).json({
-            message: err.message,
+            message: 'Error when registering user.',
         });
     }
 };
