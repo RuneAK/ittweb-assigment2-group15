@@ -25,20 +25,21 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-
+app.use(cors());
+app.options('*, http://localhost:4200', cors());
 //app.use(session({ secret: 'hemmelige_hest', resave: false, saveUninitialized: true }))
 app.use(passport.initialize());
-
-app.use(express.static('./dist/FitnessApp2Group15'));
-
-app.get("*"
-, (req, res) => {
-res.sendFile('dist/FitnessApp2Group15/index.html', { root: __dirname });
+app.use(function (req, res, next) {
+    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+    res.setHeader('Access-Control-Allow-Headers', 'Origin, Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers');
+    res.setHeader('Access-Control-Allow-Credentials', true);
+    next();
 });
 
 require('./backend/config/routes')(app);
 
 app.listen(API_PORT, () => 
-  console.log('Listning on 3000'));
+  console.log('Listening on 3000'));
 
 module.exports = app;
