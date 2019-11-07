@@ -111,31 +111,18 @@ module.exports = app => {
         });
     });
 
-    app.get('/workout/show/:id', (req, res, next) => {
-        passport.authenticate('jwt', { session: false }, (err, user, info) => {
-            if (err) {
-                console.log(err);
-                res.status(400).json({ message: err });
-            }
-            if (info != undefined) {
-                console.log(info.message);
-                res.status(400).json({ message: info.message });
+    app.get('/workout/show/:id', (req, res) => {
+        let id = req.params.id;
+        Workout.findById({ id }).then(workout => {
+            if (workout === null) {
+                console.log('No workout with that id');
+                res.status(400).json({ message: 'No workout with that id' });
             }
             else {
-                let id = req.params.id;
-                Workout.findById({ id }).then(workout => {
-                    if (workout === null){
-                        console.log('No workout with that id');
-                        res.status(400).json({ message: 'No workout matching id' });
-                    }
-                    else{
-                        console.log('Workout found');
-                        console.log(workout);
-                        res.status(200).json({ workout });
-                    }
-                });
+                console.log('Workout found');
+                res.status(200).json({ workout });
             }
-        })(req, res, next);
+        })
     });
 
     app.post('/workout/addExercise/:id', (req, res, next) => {
