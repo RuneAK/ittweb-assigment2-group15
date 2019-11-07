@@ -13,6 +13,7 @@ import { LogoutComponent } from './components/user/logout/logout.component';
 import { ShowallComponent } from './components/workout/showall/showall.component';
 import { CreateComponent } from './components/workout/create/create.component';
 import { ShowComponent } from './components/workout/show/show.component';
+import { AddExerciseComponent } from './components/workout/add-exercise/add-exercise.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { ShowComponent } from './components/workout/show/show.component';
     LogoutComponent,
     ShowallComponent,
     CreateComponent,
-    ShowComponent
+    ShowComponent,
+    AddExerciseComponent
   ],
   imports: [
     BrowserModule,

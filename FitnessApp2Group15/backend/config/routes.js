@@ -146,11 +146,12 @@ module.exports = app => {
                         let exercise = {
                             name: req.body.name,
                             description: req.body.description,
-                            set: red.body.set,
-                            reps_time: red.body.reps_time,
+                            set: req.body.set,
+                            reps_time: req.body.reps_time,
                         };
                         console.log(exercise);
-                        workout.exercises.push({ exercise }, function(error) {
+                        workout.exercises.push({ exercise }, function(error, exercise) {
+                            console.log("Hest!!")
                             if (error) {
                                 console.log('push error ' + error);
                                 res.status(400).json({ message: 'Could not add exercise' });

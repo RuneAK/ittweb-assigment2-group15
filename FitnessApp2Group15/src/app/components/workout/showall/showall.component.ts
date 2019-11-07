@@ -8,9 +8,10 @@ import { Router } from '@angular/router';
   styleUrls: ['./showall.component.css']
 })
 export class ShowallComponent implements OnInit {
+  displayedColumns: string[] = ['title'];
   Workouts:any = [];
 
-  constructor(private apiService:ApiService, private router: Router, private ngZone: NgZone) { 
+  constructor(private apiService:ApiService, private router: Router, private ngZone: NgZone) {
     this.getWorkouts();
    }
 
@@ -24,9 +25,7 @@ export class ShowallComponent implements OnInit {
   }
 
   show(workout){
-    console.log("Works "+ workout.title);
     this.apiService.currentWorkout = workout._id;
-    this.ngZone.run(() => this.router.navigateByUrl('/show'))
-
+    this.ngZone.run(() => this.router.navigateByUrl('/show'));
   }
 }

@@ -62,6 +62,11 @@ export class ApiService {
     return this.http.get(url);
   }
 
+  addExercise(data){
+    let url= `${this.baseUri}/workout/addExercise/${this.currentWorkout}`;
+    return this.http.post(url, data, { headers: { Authorization: `Bearer ${this.getToken()}` }});
+  }
+
   // Error handling 
   errorMgmt(error: HttpErrorResponse) {
     let errorMessage = '';

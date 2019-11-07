@@ -1,0 +1,38 @@
+<div class="input-container">
+        <form [formGroup]="exerciseForm" (ngSubmit)="addExercise()">
+        <mat-form-field>
+            <input matInput placeholder="Name" formControlName="name">
+        </mat-form-field>
+        <br>
+        <div class="invalid-feedback" *ngIf="submitted && myForm.name.errors?.required">
+                Name is required.
+        </div>
+        <br>
+        <mat-form-field>
+                <input matInput placeholder="Description" formControlName="description">
+        </mat-form-field>
+        <br>
+        <div class="invalid-feedback" *ngIf="submitted && myForm.description.errors?.required">
+                Description is required.
+        </div>
+        <br>
+        <mat-form-field>
+            <input matInput type="number" placeholder="Sets" formControlName="set">
+        </mat-form-field>
+        <br>
+        <div class="invalid-feedback" *ngIf="submitted && myForm.set.errors?.required">
+                Set is required.
+        </div>
+        <br>
+        <mat-form-field>
+                <input matInput type="number" placeholder="Repetions / time" formControlName="reps_time">
+        </mat-form-field>
+        <br>
+        <div class="invalid-feedback" *ngIf="submitted && myForm.name.errors?.required">
+                Repetions / time is required.
+        </div>
+        <br>
+        <button mat-stroked-button type="submit" color="accent">Add</button>
+        </form>
+    
+    </div>

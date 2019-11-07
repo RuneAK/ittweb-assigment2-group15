@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 import { ApiService } from 'src/app/service/api.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-show',
@@ -7,9 +8,11 @@ import { ApiService } from 'src/app/service/api.service';
   styleUrls: ['./show.component.css']
 })
 export class ShowComponent implements OnInit {
+  displayedColumns: string[] = ['name', 'description', 'set', 'reps_time'];
   Workout:any
+  exercies:any
 
-  constructor(private apiService:ApiService) { 
+  constructor(private apiService:ApiService, private router: Router, private ngZone: NgZone) { 
     this.getWorkout();
   }
 
@@ -17,8 +20,15 @@ export class ShowComponent implements OnInit {
   }
 
   getWorkout(){
+    console.log(this.apiService.currentWorkout);
     this.apiService.show(this.apiService.currentWorkout).subscribe((data) => {
       this.Workout = data['workout'];
-      console.log(this.Workout)})
+      this.exercies = this.Workout.exercies;
+    });
+  }
+
+  addExercise(){
+    this.apiService.currentWorkout = this.Workout._id;
+    this.ngZone.run(() => this.router.navigateByUrl('/addExercise'))
   }
 }
