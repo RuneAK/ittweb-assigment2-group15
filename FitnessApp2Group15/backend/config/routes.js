@@ -150,17 +150,17 @@ module.exports = app => {
                             reps_time: req.body.reps_time,
                         };
                         console.log(exercise);
-                        workout.exercises.push({ exercise }, function(error, exercise) {
-                            console.log("Hest!!")
-                            if (error) {
-                                console.log('push error ' + error);
-                                res.status(400).json({ message: 'Could not add exercise' });
+                        workout.exercises.push({ exercise }).then(workout.save(function(error) {
+                            if (error){
+                                console.log('Saving error');
+                                res.status(400).json({ message: 'Saving error' });
                             }
-                            else {
-                                console.log('pushed');
+                            else
+                            {
+                                console.log('Saved');
                                 res.status(200).json({ message: 'Success' });
                             }
-                        });
+                        }));
                     }
                 });
             }
