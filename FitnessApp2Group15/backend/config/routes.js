@@ -72,6 +72,7 @@ module.exports = app => {
     // Workout routes
     app.post('/workout/create', (req, res, next) => {
         passport.authenticate('jwt', { session: false }, (err, user, info) => {
+            console.log('Passport authenticate');
             if (err) {
                 console.log(err);
                 res.status(400).json({ message: err });
@@ -83,17 +84,19 @@ module.exports = app => {
             else {
                 var workout = new Workout({
                     title: req.body.title,
-                    user: req.user._id,
+                    user: user._id,
                     excercises: []
                 });
                 workout.save(function (err){
                     if (err){
                         console.log('Workout was NOT saved');
                         res.status(400).json({ message: 'Workout was NOT saved' });
-                    }}).then(workout => {
+                    }
+                    else {
                         console.log('Workout was saved');
-                        res.status(200).json({ message: 'Workout was saved'})
-                    });
+                        res.status(200).json({ message: 'Workout was saved'});
+                    }
+                });
             }
         })(req, res, next);
     });
