@@ -12,5 +12,5 @@ const UserSchema = new Schema({
     hashedPassword: { type: String, required: true, default: '' }
 });
 
-// Methods
+// Inject to mongoose models
 mongoose.model('User', UserSchema);

@@ -29,27 +29,5 @@ const WorkoutSchema = new Schema({
   }]
 });
 
-const Workout = mongoose.model('Workout', WorkoutSchema);
-
-// Methods
-
-exports.createWorkout = async function(req, res){
-    var workout = new Workout({
-        title: req.body.title,
-        user: req.user._id,
-        excercises: []
-    });
-    await workout.save(function (err){
-        if (err){
-            console.log(`Error: ${err}`);
-            return res.status(400).json({
-                message: 'Something is not right',
-            });
-        }
-        res.status(200).json({
-            message: 'Success'
-        });
-    })
-}
-
+// Inject to mongoose models
 mongoose.model('Workout', WorkoutSchema);

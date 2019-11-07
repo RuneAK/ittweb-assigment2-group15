@@ -5,6 +5,8 @@ const jwt = require('jsonwebtoken');
 const passport = require('passport');
 const mongoose = require('mongoose');
 const User = mongoose.model('User');
+const Workout = mongoose.model('Workout');
+const Activity = mongoose.model('Activity');
 
 module.exports = app => {
     // User routes
@@ -72,16 +74,154 @@ module.exports = app => {
         passport.authenticate('jwt', { session: false }, (err, user, info) => {
             if (err) {
                 console.log(err);
+                res.status(400).json({ message: err });
             }
             if (info != undefined) {
                 console.log(info.message);
-                res.send(info.message);
+                res.status(400).json({ message: info.message });
             }
             else {
-                console.log('User was authenticated');
-                res.status(200).json({
-                    auth: true,
-                    message: 'Success',
+                var workout = new Workout({
+                    title: req.body.title,
+                    user: req.user._id,
+                    excercises: []
+                });
+                workout.save(function (err){
+                    if (err){
+                        console.log('Workout was NOT saved');
+                        res.status(400).json({ message: 'Workout was NOT saved' });
+                    }}).then(workout => {
+                        console.log('Workout was saved');
+                        res.status(200).json({ message: 'Workout was saved'})
+                    });
+            }
+        })(req, res, next);
+    });
+
+    app.get('/workout/showall', function(req, res) {
+        Workout.find({}, function(err, workouts) {
+            if (err){
+                console.log(err);
+                res.status(400).json({ message: err });
+            }
+            res.status(200).json({ workouts });
+        });
+    });
+
+    app.get('/workout/show/:id', (req, res, next) => {
+        passport.authenticate('jwt', { session: false }, (err, user, info) => {
+            if (err) {
+                console.log(err);
+                res.status(400).json({ message: err });
+            }
+            if (info != undefined) {
+                console.log(info.message);
+                res.status(400).json({ message: info.message });
+            }
+            else {
+                let id = req.params.id;
+                Workout.findById({ id }).then(workout => {
+                    if (workout === null){
+                        console.log('No workout with that id');
+                        res.status(400).json({ message: 'No workout matching id' });
+                    }
+                    else{
+                        console.log('Workout found');
+                        console.log(workout);
+                        res.status(200).json({ workout });
+                    }
+                });
+            }
+        })(req, res, next);
+    });
+
+    app.post('/workout/addExercise/:id', (req, res, next) => {
+        passport.authenticate('jwt', { session: false }, (err, user, info) => {
+            if (err) {
+                console.log(err);
+                res.status(400).json({ message: err });
+            }
+            if (info != undefined) {
+                console.log(info.message);
+                res.status(400).json({ message: info.message });
+            }
+            else {
+                let id = req.params.id;
+                Workout.findById({ id }).then(workout => {
+                    if (workout === null){
+                        console.log('No workout with that id');
+                        res.status(400).json({ message: 'No workout matching id' });
+                    }
+                    else{
+                        workout.excercises.push({ name: req.body.name, description: req.body.description, set: req.body.set, reps_time: req.body.reps_time })
+                        .then(workout => { workout.save()}).then(status => {
+                            if (status == null){
+                                console.log('Could not add exercise');
+                                res.status(400).json({ message: 'Could not add exercise' });
+                            }
+                            else{
+                                console.log('Exercise added');
+                                res.status(200).json({ message: 'Exercise added' });
+                            }
+                        })
+                    }
+                });
+            }
+        })(req, res, next);
+    });
+
+    app.get('/activity/show', (req, res, next) => {
+        passport.authenticate('jwt', { session: false }, (err, user, info) => {
+            if (err) {
+                console.log(err);
+                res.status(400).json({ message: err });
+            }
+            if (info != undefined) {
+                console.log(info.message);
+                res.status(400).json({ message: info.message });
+            }
+            else {
+                let id = user._id;
+                Activity.findById({ id }).then(activity => {
+                    if (activity === null){
+                        console.log('No activities for that user');
+                        res.status(400).json({ message: 'No activities for that user' });
+                    }
+                    else{
+                        console.log('Activities found for user');
+                        res.status(200).json({ activity });
+                    }
+                });
+            }
+        })(req, res, next);
+    });
+
+    app.post('/activity/add', (req, res, next) => {
+        passport.authenticate('jwt', { session: false }, (err, user, info) => {
+            if (err) {
+                console.log(err);
+                res.status(400).json({ message: err });
+            }
+            if (info != undefined) {
+                console.log(info.message);
+                res.status(400).json({ message: info.message });
+            }
+            else {
+                var activity = new Activity({
+                    date: req.body.date,
+                    comment: req.body.comment,
+                    user: user._id,
+                    workout: req.body.workout
+                });
+                activity.save(function (err) {
+                    if (err){
+                        console.log('Could not add activity');
+                        res.status(400).json({ message: 'Could not add activity' });
+                    }
+                    else{
+                        console.log('Activity added');
+                        res.status(200).json({ message: 'Activity added' });
+                    }
                 });
             }
         })(req, res, next);
