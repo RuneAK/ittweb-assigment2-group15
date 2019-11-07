@@ -149,8 +149,9 @@ module.exports = app => {
                             set: req.body.set,
                             reps_time: req.body.reps_time,
                         };
-                        console.log(exercise);
-                        workout.exercises.push({ exercise }).then(workout.save(function(error) {
+                        workout.exercises.push({ exercise });
+                        console.log(workout);
+                        workout.save(function(error) {
                             if (error){
                                 console.log('Saving error');
                                 res.status(400).json({ message: 'Saving error' });
