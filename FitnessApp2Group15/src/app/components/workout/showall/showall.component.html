@@ -5,7 +5,9 @@
     <table *ngIf="Workouts.length > 0">
         <tbody>
             <tr *ngFor="let wo of Workouts">
-                <td>{{wo.title}}</td>
+                <td>
+                    <button (click)="show(wo)">{{wo.title}}</button>
+                </td>
             </tr>
         </tbody>
     </table>

@@ -12,6 +12,7 @@ import {FlexLayoutModule} from '@angular/flex-layout';
 import { LogoutComponent } from './components/user/logout/logout.component';
 import { ShowallComponent } from './components/workout/showall/showall.component';
 import { CreateComponent } from './components/workout/create/create.component';
+import { ShowComponent } from './components/workout/show/show.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { CreateComponent } from './components/workout/create/create.component';
     LoginComponent,
     LogoutComponent,
     ShowallComponent,
-    CreateComponent
+    CreateComponent,
+    ShowComponent
   ],
   imports: [
     BrowserModule,
