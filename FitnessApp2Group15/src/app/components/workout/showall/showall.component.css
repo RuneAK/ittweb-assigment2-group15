@@ -1,0 +1,9 @@
+.workout-list {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .workout-list > * {
+    width: 50%;
+    margin: 0%;
+  }

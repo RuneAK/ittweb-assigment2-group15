@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { Workout } from '../model/workout';
 
 @Injectable({
   providedIn: 'root'
@@ -40,7 +41,6 @@ export class ApiService {
   }
 
   logout(): void {
-    console.log('Logout');
     this.token = '';
     window.localStorage.removeItem('token');
   }
@@ -50,6 +50,11 @@ export class ApiService {
     return this.http.post(url, data, { headers: { Authorization: `Bearer ${this.getToken()}` }}).pipe(
       catchError(this.errorMgmt))
   }
+
+  showallWorkouts() {
+    let url = `${this.baseUri}/workout/showall`;
+    return this.http.get(url);
+  } 
 
   // Error handling 
   errorMgmt(error: HttpErrorResponse) {

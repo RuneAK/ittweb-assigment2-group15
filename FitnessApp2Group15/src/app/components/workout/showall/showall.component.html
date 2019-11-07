@@ -1,1 +1,12 @@
-<p>showall works!</p>
+<div class="container">
+
+    <p *ngIf="Workouts.length <= 0"> No workouts to display</p>
+
+    <table *ngIf="Workouts.length > 0">
+        <tbody>
+            <tr *ngFor="let wo of Workouts">
+                <td>{{wo.title}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
