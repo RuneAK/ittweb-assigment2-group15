@@ -119,7 +119,6 @@ module.exports = app => {
                 res.status(400).json({ message: 'No workout with that id' });
             }
             else{
-                console.log(workout);
                 res.status(200).json({ workout });
             }
         });
@@ -137,23 +136,24 @@ module.exports = app => {
             }
             else {
                 let _id = mongoose.mongo.ObjectId(req.params.id);
-                Workout.findById({ _id }).then(workout => {
-                    if (workout === null){
-                        console.log('No workout with that id');
-                        res.status(400).json({ message: 'No workout matching id' });
+                Workout.findById({ _id }, function(err, workout) {
+                    if (err || !workout) {
+                        console.log('error ' + workout);
+                        res.status(400).json({ message: 'No workout with that id' });
                     }
                     else{
-                        workout.excercises.push({ name: req.body.name, description: req.body.description, set: req.body.set, reps_time: req.body.reps_time })
-                        .then(workout => { workout.save()}).then(status => {
-                            if (status == null){
-                                console.log('Could not add exercise');
+                        workout.excercises.push({
+                            name: req.body.name, description: req.body.description, set: req.body.set, reps_time: req.body.reps_time
+                        }, function(error) {
+                            if (error) {
+                                console.log('push error ' + error);
                                 res.status(400).json({ message: 'Could not add exercise' });
                             }
-                            else{
-                                console.log('Exercise added');
-                                res.status(200).json({ message: 'Exercise added' });
+                            else {
+                                console.log('pushed');
+                                res.status(200).json({ message: 'Success' });
                             }
-                        })
+                        });
                     }
                 });
             }
@@ -171,13 +171,13 @@ module.exports = app => {
                 res.status(400).json({ message: info.message });
             }
             else {
-                let id = user._id;
-                Activity.findById({ id }).then(activity => {
-                    if (activity === null){
+                let _id = mongoose.mongo.ObjectId(user._id);
+                Activity.findById({ _id }, function(err, activity) {
+                    if (err || !activity){
                         console.log('No activities for that user');
                         res.status(400).json({ message: 'No activities for that user' });
                     }
-                    else{
+                    else {
                         console.log('Activities found for user');
                         res.status(200).json({ activity });
                     }
