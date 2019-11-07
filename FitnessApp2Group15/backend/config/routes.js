@@ -112,17 +112,17 @@ module.exports = app => {
     });
 
     app.get('/workout/show/:id', (req, res) => {
-        let id = req.params.id;
-        Workout.findById({ id }).then(workout => {
-            if (workout === null) {
-                console.log('No workout with that id');
+        let _id = mongoose.mongo.ObjectId(req.params.id);
+        Workout.findById({_id}, function(err, workout) {
+            if (err || !workout){
+                console.log('error ' + workout);
                 res.status(400).json({ message: 'No workout with that id' });
             }
-            else {
-                console.log('Workout found');
+            else{
+                console.log(workout);
                 res.status(200).json({ workout });
             }
-        })
+        });
     });
 
     app.post('/workout/addExercise/:id', (req, res, next) => {
@@ -136,8 +136,8 @@ module.exports = app => {
                 res.status(400).json({ message: info.message });
             }
             else {
-                let id = req.params.id;
-                Workout.findById({ id }).then(workout => {
+                let _id = mongoose.mongo.ObjectId(req.params.id);
+                Workout.findById({ _id }).then(workout => {
                     if (workout === null){
                         console.log('No workout with that id');
                         res.status(400).json({ message: 'No workout matching id' });
