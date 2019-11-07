@@ -143,13 +143,7 @@ module.exports = app => {
                     }
                     else{
                         console.log(workout);
-                        let exercise = {
-                            name: req.body.name,
-                            description: req.body.description,
-                            set: req.body.set,
-                            reps_time: req.body.reps_time,
-                        };
-                        workout.exercises.push({ exercise });
+                        workout.exercises.push({ name: req.body.name, description: req.body.description, set: req.body.set, reps_time: req.body.reps_time });
                         console.log(workout);
                         workout.save(function(error) {
                             if (error){
