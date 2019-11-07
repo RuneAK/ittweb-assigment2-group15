@@ -37,6 +37,13 @@ app.use(function (req, res, next) {
     next();
 });
 
+app.use(express.static('./dist/FitnessApp2Group15'));
+
+app.get("*"
+, (req, res) => {
+res.sendFile('dist/FitnessApp2Group15/index.html', { root: __dirname });
+});
+
 require('./backend/config/routes')(app);
 
 app.listen(API_PORT, () => 
