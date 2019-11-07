@@ -142,9 +142,15 @@ module.exports = app => {
                         res.status(400).json({ message: 'No workout with that id' });
                     }
                     else{
-                        workout.excercises.push({
-                            name: req.body.name, description: req.body.description, set: req.body.set, reps_time: req.body.reps_time
-                        }, function(error) {
+                        console.log(workout);
+                        let exercise = {
+                            name: req.body.name,
+                            description: req.body.description,
+                            set: red.body.set,
+                            reps_time: red.body.reps_time,
+                        };
+                        console.log(exercise);
+                        workout.exercises.push({ exercise }, function(error) {
                             if (error) {
                                 console.log('push error ' + error);
                                 res.status(400).json({ message: 'Could not add exercise' });
