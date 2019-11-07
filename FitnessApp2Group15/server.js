@@ -1,5 +1,5 @@
 // Module dependencies
-
+const bodyParser = require('body-parser');
 const express = require('express');
 const passport = require('passport');
 const join = require('path').join;
@@ -22,8 +22,8 @@ require('./backend/config/passport');
 
 // Server configuration
 app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(cors());
 app.options('*, http://localhost:4200', cors());

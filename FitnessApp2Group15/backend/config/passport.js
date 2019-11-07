@@ -10,7 +10,6 @@ const LocalStrategy = require('passport-local').Strategy;
 const JWTStrategy = require('passport-jwt').Strategy;
 const ExtractJWT = require('passport-jwt').ExtractJwt;
 
-
 passport.serializeUser((user, callback) =>
     callback(null, user.email));
 
