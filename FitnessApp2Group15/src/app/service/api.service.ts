@@ -9,6 +9,7 @@ import { Workout } from '../model/workout';
 })
 export class ApiService {
 
+  public currentWorkout: string;
   private token: string;
   baseUri:string = 'http://localhost:3000';
   headers = new HttpHeaders().set('Content-Type', 'application/json');
@@ -54,7 +55,12 @@ export class ApiService {
   showallWorkouts() {
     let url = `${this.baseUri}/workout/showall`;
     return this.http.get(url);
-  } 
+  }
+
+  show(id){
+    let url = `${this.baseUri}/workout/show/${id}`;
+    return this.http.get(url);
+  }
 
   // Error handling 
   errorMgmt(error: HttpErrorResponse) {

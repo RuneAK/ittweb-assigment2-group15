@@ -6,6 +6,7 @@ import { LoginComponent } from './components/user/login/login.component';
 import { LogoutComponent } from './components/user/logout/logout.component';
 import { ShowallComponent } from './components/workout/showall/showall.component';
 import { CreateComponent } from './components/workout/create/create.component';
+import { ShowComponent } from './components/workout/show/show.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'showall' },
@@ -13,7 +14,8 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent},
   {path: 'logout', component: LogoutComponent},
   {path: 'showall', component: ShowallComponent},
-  {path: 'create', component: CreateComponent}
+  {path: 'create', component: CreateComponent},
+  {path: 'show', component: ShowComponent}
 ];
 
 @NgModule({

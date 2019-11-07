@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 import { ApiService } from 'src/app/service/api.service';
-import { Workout } from 'src/app/model/workout';
-import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-showall',
@@ -11,7 +10,7 @@ import { Observable } from 'rxjs';
 export class ShowallComponent implements OnInit {
   Workouts:any = [];
 
-  constructor(private apiService:ApiService) { 
+  constructor(private apiService:ApiService, private router: Router, private ngZone: NgZone) { 
     this.getWorkouts();
    }
 
@@ -22,5 +21,12 @@ export class ShowallComponent implements OnInit {
     this.apiService.showallWorkouts().subscribe((data) => {
       this.Workouts = data['workouts'];
       console.log(this.Workouts)})
+  }
+
+  show(workout){
+    console.log("Works "+ workout.title);
+    this.apiService.currentWorkout = workout._id;
+    this.ngZone.run(() => this.router.navigateByUrl('/show'))
+
   }
 }

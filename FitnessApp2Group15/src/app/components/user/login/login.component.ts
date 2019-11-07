@@ -12,7 +12,7 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   submitted = false;
 
-  constructor(private apiService: ApiService, public fb: FormBuilder, private router: Router, private ngZone: NgZone,) {
+  constructor(private apiService: ApiService, public fb: FormBuilder, private router: Router, private ngZone: NgZone) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')]],
       password: ['', [Validators.required]]
