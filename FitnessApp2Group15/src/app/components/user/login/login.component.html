@@ -3,15 +3,18 @@
         <mat-form-field>
                 <input matInput placeholder="email" formControlName="email">
         </mat-form-field>
+        <br>
         <div class="invalid-feedback" *ngIf="submitted && myForm.email.errors?.required">
                 Enter your email.
             </div>
             <div class="invalid-feedback" *ngIf="submitted && myForm.email.errors?.pattern">
                 Enter valid email.
         </div>
+        <br>
         <mat-form-field>
                 <input matInput placeholder="password" formControlName="password">
         </mat-form-field>
+        <br>
         <div class="invalid-feedback" *ngIf="submitted && myForm.password.errors?.required">
                 Password is required.
         </div>

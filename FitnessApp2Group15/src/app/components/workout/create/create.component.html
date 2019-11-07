@@ -1,0 +1,13 @@
+<div class="input-container">
+        <form [formGroup]="createForm" (ngSubmit)="create()">
+            <mat-form-field>
+                <input matInput placeholder="title" formControlName="title">
+            </mat-form-field>
+            <br>
+            <div class="invalid-feedback" *ngIf="submitted && myForm.title.errors?.required">
+                Title is required.
+            </div>
+            <br>
+            <button mat-stroked-button type="submit" color="accent">Create</button>
+        </form>
+    </div>

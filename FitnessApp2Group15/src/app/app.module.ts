@@ -9,12 +9,18 @@ import { LoginComponent } from './components/user/login/login.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MaterialModule} from './material.module';
 import {FlexLayoutModule} from '@angular/flex-layout';
+import { LogoutComponent } from './components/user/logout/logout.component';
+import { ShowallComponent } from './components/workout/showall/showall.component';
+import { CreateComponent } from './components/workout/create/create.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
+    LogoutComponent,
+    ShowallComponent,
+    CreateComponent
   ],
   imports: [
     BrowserModule,
