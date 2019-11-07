@@ -161,7 +161,7 @@ module.exports = app => {
                                 console.log('Saved');
                                 res.status(200).json({ message: 'Success' });
                             }
-                        }));
+                        });
                     }
                 });
             }
