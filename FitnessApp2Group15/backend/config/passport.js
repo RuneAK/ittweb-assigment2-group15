@@ -9,6 +9,7 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const JWTStrategy = require('passport-jwt').Strategy;
 const ExtractJWT = require('passport-jwt').ExtractJwt;
+const secret = process.env.SECRET || 'hemmelige_hest';
 
 passport.serializeUser((user, callback) =>
     callback(null, user.email));
@@ -88,7 +89,7 @@ passport.use(
 
 const options = {
     jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken(),
-    secretOrKey: 'hemmelige_hest',
+    secretOrKey: secret,
 };
 
 passport.use(

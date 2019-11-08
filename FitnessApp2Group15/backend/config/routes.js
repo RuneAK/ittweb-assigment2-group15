@@ -8,6 +8,7 @@ const path = require('path');
 const User = mongoose.model('User');
 const Workout = mongoose.model('Workout');
 const Activity = mongoose.model('Activity');
+const secret = process.env.SECRET || 'hemmelige_hest';
 
 module.exports = app => {
     // User routes
@@ -61,7 +62,7 @@ module.exports = app => {
                     console.log(id);
                     console.log(_id);
                     User.findOne({ _id }).then(user => {
-                        const token = jwt.sign({ id: user._id }, 'hemmelige_hest', { expiresIn: '1h' });
+                        const token = jwt.sign({ id: user._id }, secret, { expiresIn: '1h' });
                         res.status(200).json({
                             auth: true,
                             token: token,
