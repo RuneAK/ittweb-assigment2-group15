@@ -173,8 +173,6 @@ module.exports = app => {
                 res.status(400).json({ message: info.message });
             }
             else {
-                console.log(user);
-                console.log(user._id);
                 let _id = mongoose.mongo.ObjectId(user._id);
                 Activity.find({ user: _id }, function(err, activity) {
                     if (err || !activity){
@@ -217,6 +215,7 @@ module.exports = app => {
                             comment: req.body.comment,
                             user: user._id,
                             workout: workout._id,
+                            workout_title: workout.title,
                         });
                         activity.save(function (err) {
                             if (err){

@@ -13,7 +13,10 @@ const ActivitySchema = new Schema({
       required: true
   },
   user: {type: Schema.ObjectId, ref: 'User'},
-  workout: { type: Schema.ObjectId, ref: 'Workout'}
+  workout: { type: Schema.ObjectId, ref: 'Workout'},
+  workout_title: {
+      type: String,
+  }
 });
 
 // Inject to mongoose models
