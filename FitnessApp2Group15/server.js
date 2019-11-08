@@ -8,7 +8,7 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const cors = require('cors');
 const app = express();
-const API_PORT = process.env.API_PORT || 3000;
+const API_PORT = process.env.PORT || 3000;
 
 // Require all mongoose models
 const models = join(__dirname, '/backend/models');
