@@ -37,13 +37,13 @@ export class ApiService {
     const token = this.getToken();
     let payload = token.split('.')[1];
     payload = window.atob(payload);
-    let id = JSON.parse(payload).id;
-    console.log(id);
+    let user = JSON.parse(payload);
+    return user.id;
   }
 
   public isSameUser(id):boolean{
-    console.log(id);
-    if(id === this.getUserId){
+    let userid = this.getUserId();
+    if(id == userid ){
       return true;
     } else {
       return false;

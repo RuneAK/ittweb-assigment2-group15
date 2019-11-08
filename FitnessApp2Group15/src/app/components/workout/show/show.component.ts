@@ -21,7 +21,6 @@ export class ShowComponent implements OnInit {
   }
 
   isSameUser():boolean{
-    console.log(this.Workout);
     return this.apiService.isSameUser(this.Workout.user);
   }
 
