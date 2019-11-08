@@ -28,8 +28,8 @@ module.exports = app => {
                         name: req.body.name,
                         username: req.body.email,
                     };
-                    let id = user._id;
-                    User.findOne({ id }).then(user => {
+                    let _id = mongoose.mongo.ObjectId(id);
+                    User.findOne({ _id }).then(user => {
                         user
                             .update({
                                 name: data.name,
@@ -86,6 +86,8 @@ module.exports = app => {
             else {
                 console.log(user);
                 console.log(req.body);
+                console.log(user._id);
+                console.log(mongoose.mongo.ObjectId(user._id));
                 var workout = new Workout({
                     title: req.body.title,
                     user: user._id,
