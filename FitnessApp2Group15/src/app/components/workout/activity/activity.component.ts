@@ -15,7 +15,7 @@ export class ActivityComponent implements OnInit {
   Workouts:any = [];
   WorkoutTitles:any = [];
 
-  constructor(private apiService:ApiService, public fb: FormBuilder) {
+  constructor(public apiService:ApiService, public fb: FormBuilder) {
     this.activityForm = this.fb.group({
       date: ['', [Validators.required]],
       comment: ['', [Validators.required]],

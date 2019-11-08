@@ -12,7 +12,7 @@ export class AddExerciseComponent implements OnInit {
   exerciseForm:FormGroup;
   submitted=false;
 
-  constructor(private apiService:ApiService, public fb: FormBuilder, private router: Router, private ngZone: NgZone) {
+  constructor(public apiService:ApiService, public fb: FormBuilder, private router: Router, private ngZone: NgZone) {
     this.exerciseForm = this.fb.group({
       name: ['', [Validators.required]],
       description: ['', [Validators.required]],

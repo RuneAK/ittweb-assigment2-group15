@@ -11,7 +11,7 @@ export class ShowallComponent implements OnInit {
   displayedColumns: string[] = ['title'];
   Workouts:any = [];
 
-  constructor(private apiService:ApiService, private router: Router, private ngZone: NgZone) {
+  constructor(public apiService:ApiService, private router: Router, private ngZone: NgZone) {
     this.getWorkouts();
    }
 

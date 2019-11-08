@@ -12,7 +12,7 @@ export class ShowComponent implements OnInit {
   Workout:any
   exercies:any
 
-  constructor(private apiService:ApiService, private router: Router, private ngZone: NgZone) { 
+  constructor(public apiService:ApiService, private router: Router, private ngZone: NgZone) { 
     this.getWorkout();
     this.apiService.isLoggedIn();
   }

@@ -9,6 +9,6 @@ import { ApiService } from './service/api.service';
 export class AppComponent {
   title = 'FitnessApp2Group15';
 
-  constructor(private apiService: ApiService){}
+  constructor(public apiService: ApiService){}
 
 }
