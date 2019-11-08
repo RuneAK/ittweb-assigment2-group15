@@ -5,7 +5,7 @@
     <table mat-table [dataSource]="activities" *ngIf="apiService.isLoggedIn()">
         <ng-container matColumnDef="date">
             <th mat-header-cell *matHeaderCellDef> Date </th>
-            <td mat-cell *matCellDef="let ac"> {{ac.date}} </td>
+            <td mat-cell *matCellDef="let ac"> {{ac.date.split('T')[0]}} </td>
         </ng-container>
         
         <ng-container matColumnDef="comment">
@@ -27,7 +27,7 @@
             <input matInput [matDatepicker]="picker" placeholder="Choose a date" formControlName="date">
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
-            </mat-form-field>
+        </mat-form-field>
         <br>
         <div class="invalid-feedback" *ngIf="submitted && myForm.date.errors?.required">
                 Date is required.
