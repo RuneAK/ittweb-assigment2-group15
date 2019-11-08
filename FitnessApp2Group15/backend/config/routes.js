@@ -57,7 +57,7 @@ module.exports = app => {
                 req.logIn(user, err => {
                     var email = user.email;
                     User.findOne({ email }).then(user => {
-                        const token = jwt.sign({ id: user.email }, 'hemmelige_hest');
+                        const token = jwt.sign({ id: user.email }, 'hemmelige_hest', { expiresIn: '1h' });
                         res.status(200).json({
                             auth: true,
                             token: token,
