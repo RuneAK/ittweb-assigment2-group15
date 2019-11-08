@@ -4,6 +4,7 @@
 const jwt = require('jsonwebtoken');
 const passport = require('passport');
 const mongoose = require('mongoose');
+const path = require('path');
 const User = mongoose.model('User');
 const Workout = mongoose.model('Workout');
 const Activity = mongoose.model('Activity');
@@ -231,5 +232,9 @@ module.exports = app => {
                 });
             }
         })(req, res, next);
+    });
+
+    app.get("*", (req, res) => {
+        res.sendFile(path.resolve('dist/FitnessApp2Group15/index.html'));
     });
 };
