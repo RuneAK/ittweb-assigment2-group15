@@ -1,17 +1,9 @@
 'use strict';
 
 const mongoose = require( 'mongoose' );
-var devMode = true;
+const dbURI = process.env.MONGO_DB || 'mongodb://localhost/SecondFitnessApp';
 
-try {
-    var dbURI = process.env.DEV_MONGODB;
-    devMode = false;
-    mongoose.connect(dbURI);
-} catch {
-    var dbURI = 'mongodb://localhost/SecondFitnessApp';
-    devMode = true;
-    mongoose.connect(dbURI);
-}
+mongoose.connect(dbURI);
 
 mongoose.connection.on('connected', () => {
     if (devMode) {

@@ -31,7 +31,6 @@ app.use(express.static('./dist/FitnessApp2Group15'));
 
 require('./backend/config/routes')(app);
 
-app.listen(API_PORT, () => 
-  console.log('Listening on: ' + API_PORT));
+//app.listen(API_PORT, () => console.log('Listening on: ' + API_PORT));
 
 module.exports = app;

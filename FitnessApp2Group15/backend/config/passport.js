@@ -96,7 +96,6 @@ passport.use(
     'jwt',
     new JWTStrategy(options, (jwtPayload, done) => {
         try{
-            let id = jwtPayload.id;
             let _id = mongoose.mongo.ObjectId(jwtPayload.id);
             User.findOne({ _id }).then(user => {
                 if (user) {
