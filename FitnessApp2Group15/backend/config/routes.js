@@ -57,10 +57,7 @@ module.exports = app => {
             }
             else {
                 req.logIn(user, err => {
-                    let id = user._id;
                     let _id = mongoose.mongo.ObjectId(user._id);
-                    console.log(id);
-                    console.log(_id);
                     User.findOne({ _id }).then(user => {
                         const token = jwt.sign({ id: user._id }, secret, { expiresIn: '1h' });
                         res.status(200).json({
@@ -87,6 +84,8 @@ module.exports = app => {
                 res.status(400).json({ message: info.message });
             }
             else {
+                console.log(user);
+                console.log(req.body);
                 var workout = new Workout({
                     title: req.body.title,
                     user: user._id,
