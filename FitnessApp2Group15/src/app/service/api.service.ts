@@ -3,6 +3,8 @@ import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 
+const BASE_URI:string = process.env.BASE_URI || 'http://localhost:3000';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -10,7 +12,7 @@ export class ApiService {
 
   public currentWorkout: string;
   private token: string;
-  baseUri:string = 'http://localhost:3000';
+  baseUri:string = BASE_URI;
   headers = new HttpHeaders().set('Content-Type', 'application/json');
 
   constructor(private http: HttpClient) { }
