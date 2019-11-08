@@ -201,16 +201,17 @@ module.exports = app => {
             }
             else {
                 console.log(req.body);
-                console.log('parsing _id');
                 let _id = mongoose.mongo.ObjectId(req.body._id);
-                console.log(_id);
                 let id = req.body._id;
+                console.log('Parsed id: ' + _id);
+                console.log('Raw id: ' + id);
                 Workout.findById({ id }, function(err, workout) {
-                    if (err || !workout) {
-                        console.log('Error finding workout when add activity: ' + workout);
+                    if (err ) {
+                        console.log('Error in workout.findById');
                         res.status(400).json({ message: 'No workout with that id' });
                     }
                     else{
+                        console.log(workout);
                         var activity = new Activity({
                             date: req.body.date,
                             comment: req.body.comment,
