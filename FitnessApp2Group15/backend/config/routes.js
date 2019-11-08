@@ -173,8 +173,10 @@ module.exports = app => {
                 res.status(400).json({ message: info.message });
             }
             else {
+                console.log(req.body);
+                console.log(user._id);
                 let _id = mongoose.mongo.ObjectId(user._id);
-                Activity.findById({ _id }, function(err, activity) {
+                Activity.find({ user: _id }, function(err, activity) {
                     if (err || !activity){
                         console.log('No activities for that user');
                         res.status(400).json({ message: 'No activities for that user' });
@@ -209,7 +211,6 @@ module.exports = app => {
                         res.status(400).json({ message: 'No workout with that id' });
                     }
                     else{
-                        console.log(workout);
                         var activity = new Activity({
                             date: req.body.date,
                             comment: req.body.comment,
