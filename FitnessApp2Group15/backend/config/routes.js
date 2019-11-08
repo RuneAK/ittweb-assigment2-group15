@@ -173,7 +173,7 @@ module.exports = app => {
                 res.status(400).json({ message: info.message });
             }
             else {
-                console.log(req.body);
+                console.log(user);
                 console.log(user._id);
                 let _id = mongoose.mongo.ObjectId(user._id);
                 Activity.find({ user: _id }, function(err, activity) {
@@ -183,6 +183,7 @@ module.exports = app => {
                     }
                     else {
                         console.log('Activities found for user');
+                        console.log(activity);
                         res.status(200).json({ activity });
                     }
                 });
