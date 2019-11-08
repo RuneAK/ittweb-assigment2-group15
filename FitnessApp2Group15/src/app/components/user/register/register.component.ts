@@ -35,7 +35,7 @@ export class RegisterComponent implements OnInit {
       this.apiService.register(this.registerForm.value).subscribe(
         (res) => {
           console.log('User successfully created!')
-          this.ngZone.run(() => this.router.navigateByUrl('/'))
+          this.ngZone.run(() => this.router.navigateByUrl('/login'))
         }, (error) => {
           console.log(error);
         });
