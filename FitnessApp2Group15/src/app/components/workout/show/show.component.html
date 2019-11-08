@@ -1,8 +1,8 @@
 <div class="container">
-    <h2 *ngIf="Workout">{{Workout.title}}</h2>
-    <button mat-stroked-button *ngIf="apiService.isLoggedIn()" (click)="addExercise()"> Add Exercise </button>
+    <h3 *ngIf="Workout">Workout: {{Workout.title}}</h3>
 
     <table mat-table [dataSource]="exercies">
+        <caption>Exercises</caption>
 
         <ng-container matColumnDef="name">
             <th mat-header-cell *matHeaderCellDef> Name </th>
@@ -27,4 +27,6 @@
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
+
+    <button mat-stroked-button *ngIf="apiService.isLoggedIn()" (click)="addExercise()"> Add Exercise </button>
 </div>

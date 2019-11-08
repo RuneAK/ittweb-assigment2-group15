@@ -20,8 +20,7 @@ export class ShowallComponent implements OnInit {
 
   getWorkouts(){
     this.apiService.showallWorkouts().subscribe((data) => {
-      this.Workouts = data['workouts'];
-      console.log(this.Workouts)})
+      this.Workouts = data['workouts'];})
   }
 
   show(workout){

@@ -78,6 +78,17 @@ export class ApiService {
     return this.http.post(url, data, { headers: { Authorization: `Bearer ${this.getToken()}` }});
   }
 
+  showActivity(){
+    let url= `${this.baseUri}/activity/show`;
+    return this.http.get(url, { headers: { Authorization: `Bearer ${this.getToken()}` }});
+  }
+
+  addActivity(data){
+    let url= `${this.baseUri}/activity/add`;
+    console.log('Posting'+ url);
+    return this.http.post(url, data, { headers: { Authorization: `Bearer ${this.getToken()}` }});
+  }
+
   // Error handling 
   errorMgmt(error: HttpErrorResponse) {
     let errorMessage = '';

@@ -1,5 +1,8 @@
 <div class="input-container">
-        <form [formGroup]="exerciseForm" (ngSubmit)="addExercise()">
+        <h3 *ngIf="!apiService.isLoggedIn()"> You must be logged in</h3>
+        <h3 *ngIf="apiService.isLoggedIn()">Add an exercise:</h3>
+
+        <form [formGroup]="exerciseForm" (ngSubmit)="addExercise()" *ngIf="apiService.isLoggedIn()">
         <mat-form-field>
             <input matInput placeholder="Name" formControlName="name">
         </mat-form-field>

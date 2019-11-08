@@ -31,9 +31,9 @@
           </button>
         </div>
          <div>
-           <a>
+           <p>
               FitnessApp
-           </a>
+           </p>
          </div>
          <div fxFlex fxLayout fxLayoutAlign="flex-end"  fxHide.xs>
             <ul fxLayout fxLayoutGap="20px" class="navigation-items">
@@ -43,25 +43,25 @@
                     <span  class="label">Workouts</span>
                     </a>
                 </li>
-                <li>
+                <li *ngIf="apiService.isLoggedIn()">
                   <a routerLinkActive="active" routerLink="/activity">
                   <mat-icon class="icon">view_list</mat-icon>
                   <span  class="label">Activity</span>
                   </a>
                 </li>
-                <li>
+                <li *ngIf="!apiService.isLoggedIn()">
                     <a routerLinkActive="active" routerLink="/login">
                     <mat-icon class="icon">exit_to_app</mat-icon>
                     <span  class="label">Login</span>
                     </a>
                 </li>
-                <li>
+                <li *ngIf="!apiService.isLoggedIn()">
                   <a routerLinkActive="active" routerLink="/register">
                     <mat-icon class="icon">person_add</mat-icon>
                     <span  class="label">Register</span>
                    </a>
               </li>
-                <li>
+                <li *ngIf="apiService.isLoggedIn()">
                   <a routerLinkActive="active" routerLink="/logout">
                   <mat-icon class="icon">close</mat-icon>
                   <span  class="label">Logout</span>
