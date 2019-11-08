@@ -138,7 +138,7 @@ module.exports = app => {
                 let _id = mongoose.mongo.ObjectId(req.params.id);
                 Workout.findById({ _id }, function(err, workout) {
                     if (err || !workout) {
-                        console.log('error ' + workout);
+                        console.log('Error finding workout: ' + workout);
                         res.status(400).json({ message: 'No workout with that id' });
                     }
                     else{
@@ -199,21 +199,30 @@ module.exports = app => {
                 res.status(400).json({ message: info.message });
             }
             else {
-                var activity = new Activity({
-                    date: req.body.date,
-                    comment: req.body.comment,
-                    user: user._id,
-                    workout: req.body.workout
-                });
-                activity.save(function (err) {
-                    if (err){
-                        console.log('Could not add activity');
-                        res.status(400).json({ message: 'Could not add activity' });
+                let _id = mongoose.mongo.ObjectId(req.body._id);
+                Workout.findById({ _id }, function(err, workout) {
+                    if (err || !workout) {
+                        console.log('Error finding workout when add activity: ' + workout);
+                        res.status(400).json({ message: 'No workout with that id' });
                     }
                     else{
-                        console.log('Activity added');
-                        res.status(200).json({ message: 'Activity added' });
-                    }
+                        var activity = new Activity({
+                            date: req.body.date,
+                            comment: req.body.comment,
+                            user: user._id,
+                            workout: workout._id,
+                        });
+                        activity.save(function (err) {
+                            if (err){
+                                console.log('Could not add activity');
+                                res.status(400).json({ message: 'Could not add activity' });
+                            }
+                            else{
+                                console.log('Activity added');
+                                res.status(200).json({ message: 'Activity added' });
+                            }
+                        });
+                    }                
                 });
             }
         })(req, res, next);
