@@ -20,6 +20,11 @@ export class ShowComponent implements OnInit {
   ngOnInit() {
   }
 
+  isSameUser():boolean{
+    console.log(this.Workout);
+    return this.apiService.isSameUser(this.Workout.user);
+  }
+
   getWorkout(){
     this.apiService.show(this.apiService.currentWorkout).subscribe((data) => {
       this.Workout = data['workout'];

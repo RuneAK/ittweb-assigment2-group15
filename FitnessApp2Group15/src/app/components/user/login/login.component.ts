@@ -33,7 +33,6 @@ export class LoginComponent implements OnInit {
     } else {
       this.apiService.login(this.loginForm.value).subscribe(
         (res) => {
-          console.log(res);
           console.log('User successfully logged in!')
           this.ngZone.run(() => this.router.navigateByUrl('/'))
         }, (error) => {

@@ -97,7 +97,8 @@ passport.use(
     new JWTStrategy(options, (jwtPayload, done) => {
         try{
             let id = jwtPayload.id;
-            User.findOne({ id }).then(user => {
+            let _id = mongoose.mongo.ObjectId(jwtPayload.id);
+            User.findOne({ _id }).then(user => {
                 if (user) {
                     console.log('User found in database');
                     done(null, user);

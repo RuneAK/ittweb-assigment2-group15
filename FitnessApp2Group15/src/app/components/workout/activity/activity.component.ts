@@ -39,7 +39,6 @@ export class ActivityComponent implements OnInit {
     this.apiService.showActivity().subscribe((data) => {
       this.activities = data['activity'];
     });
-    console.log(this.activities);
   }
 
   get myForm(){

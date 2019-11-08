@@ -28,5 +28,11 @@
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
 
-    <button mat-stroked-button *ngIf="apiService.isLoggedIn()" (click)="addExercise()"> Add Exercise </button>
+    <div *ngIf="Workout">
+        <div *ngIf="apiService.isLoggedIn()">
+            <p *ngIf="isSameUser()">Hejsa</p>
+                <!-- <button mat-stroked-button *ngIf="apiService.isSameUser(Workout.user)" (click)="addExercise()"> Add Exercise </button> -->
+        </div>
+    </div>
+    
 </div>

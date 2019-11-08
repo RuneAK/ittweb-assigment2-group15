@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
-import { Workout } from '../model/workout';
 
 @Injectable({
   providedIn: 'root'
@@ -32,6 +31,23 @@ export class ApiService {
       return (user.exp > Date.now() / 1000);
     }
     return false;
+  }
+
+  private getUserId(){
+    const token = this.getToken();
+    let payload = token.split('.')[1];
+    payload = window.atob(payload);
+    let id = JSON.parse(payload).id;
+    console.log(id);
+  }
+
+  public isSameUser(id):boolean{
+    console.log(id);
+    if(id === this.getUserId){
+      return true;
+    } else {
+      return false;
+    }
   }
 
   register(data): Observable<any> {

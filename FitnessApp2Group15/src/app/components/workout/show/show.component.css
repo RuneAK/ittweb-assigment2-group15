@@ -2,3 +2,7 @@ table {
     width: 100%;
     margin: 1%;
   }
+
+  button{
+    margin: 6px 8px 6px 8px;
+  }

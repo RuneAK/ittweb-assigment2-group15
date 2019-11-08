@@ -28,7 +28,7 @@ module.exports = app => {
                         name: req.body.name,
                         username: req.body.email,
                     };
-                    let _id = mongoose.mongo.ObjectId(id);
+                    let _id = mongoose.mongo.ObjectId(user._id);
                     User.findOne({ _id }).then(user => {
                         user
                             .update({
