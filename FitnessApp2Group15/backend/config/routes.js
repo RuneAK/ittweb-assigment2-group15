@@ -190,6 +190,7 @@ module.exports = app => {
 
     app.post('/activity/add', (req, res, next) => {
         passport.authenticate('jwt', { session: false }, (err, user, info) => {
+            console.log('About to authentication for /activity/add')
             if (err) {
                 console.log(err);
                 res.status(400).json({ message: err });
@@ -199,7 +200,10 @@ module.exports = app => {
                 res.status(400).json({ message: info.message });
             }
             else {
+                console.log(req.body);
+                console.log('parsing _id');
                 let _id = mongoose.mongo.ObjectId(req.body._id);
+                console.log(_id);
                 Workout.findById({ _id }, function(err, workout) {
                     if (err || !workout) {
                         console.log('Error finding workout when add activity: ' + workout);
