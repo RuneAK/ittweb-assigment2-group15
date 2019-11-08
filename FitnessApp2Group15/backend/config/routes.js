@@ -57,7 +57,10 @@ module.exports = app => {
             else {
                 req.logIn(user, err => {
                     let id = user._id;
-                    User.findOne({ id }).then(user => {
+                    let _id = mongoose.mongo.ObjectId(user._id);
+                    console.log(id);
+                    console.log(_id);
+                    User.findOne({ _id }).then(user => {
                         const token = jwt.sign({ id: user._id }, 'hemmelige_hest', { expiresIn: '1h' });
                         res.status(200).json({
                             auth: true,
