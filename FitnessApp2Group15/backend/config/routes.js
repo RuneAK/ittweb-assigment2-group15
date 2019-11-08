@@ -27,8 +27,8 @@ module.exports = app => {
                         name: req.body.name,
                         username: req.body.email,
                     };
-                    let email = user.email;
-                    User.findOne({ email }).then(user => {
+                    let id = user._id;
+                    User.findOne({ id }).then(user => {
                         user
                             .update({
                                 name: data.name,
@@ -56,9 +56,9 @@ module.exports = app => {
             }
             else {
                 req.logIn(user, err => {
-                    var email = user.email;
-                    User.findOne({ email }).then(user => {
-                        const token = jwt.sign({ id: user.email }, 'hemmelige_hest', { expiresIn: '1h' });
+                    let id = user._id;
+                    User.findOne({ id }).then(user => {
+                        const token = jwt.sign({ id: user._id }, 'hemmelige_hest', { expiresIn: '1h' });
                         res.status(200).json({
                             auth: true,
                             token: token,
