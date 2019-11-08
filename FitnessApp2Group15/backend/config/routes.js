@@ -201,8 +201,8 @@ module.exports = app => {
             }
             else {
                 console.log(req.body);
-                let _id = mongoose.mongo.ObjectId(req.body._id);
-                let id = req.body._id;
+                let _id = mongoose.mongo.ObjectId(req.body.workout);
+                let id = req.body.workout;
                 console.log('Parsed id: ' + _id);
                 console.log('Raw id: ' + id);
                 Workout.findById({ id }, function(err, workout) {
