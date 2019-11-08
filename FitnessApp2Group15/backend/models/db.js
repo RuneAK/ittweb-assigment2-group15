@@ -6,11 +6,7 @@ const dbURI = process.env.MONGO_DB || 'mongodb://localhost/SecondFitnessApp';
 mongoose.connect(dbURI);
 
 mongoose.connection.on('connected', () => {
-    if (devMode) {
-        console.log(`Mongoose connected to ${dbURI}`);
-    } else {
-        console.log(`Mongoose connected!`);
-    }
+    console.log(`Mongoose connected!`);
 });
 mongoose.connection.on('error', err => {
     console.log('Mongoose connection error:', err);
