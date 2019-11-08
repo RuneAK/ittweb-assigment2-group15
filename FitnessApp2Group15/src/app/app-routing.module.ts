@@ -8,6 +8,7 @@ import { ShowallComponent } from './components/workout/showall/showall.component
 import { CreateComponent } from './components/workout/create/create.component';
 import { ShowComponent } from './components/workout/show/show.component';
 import { AddExerciseComponent } from './components/workout/add-exercise/add-exercise.component';
+import { ActivityComponent } from './components/workout/activity/activity.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'showall' },
@@ -17,7 +18,8 @@ const routes: Routes = [
   {path: 'showall', component: ShowallComponent},
   {path: 'create', component: CreateComponent},
   {path: 'show', component: ShowComponent},
-  {path: 'addExercise', component: AddExerciseComponent}
+  {path: 'addExercise', component: AddExerciseComponent},
+  {path: 'activity', component: ActivityComponent}
 ];
 
 @NgModule({

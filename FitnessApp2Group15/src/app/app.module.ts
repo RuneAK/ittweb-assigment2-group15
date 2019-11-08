@@ -14,6 +14,7 @@ import { ShowallComponent } from './components/workout/showall/showall.component
 import { CreateComponent } from './components/workout/create/create.component';
 import { ShowComponent } from './components/workout/show/show.component';
 import { AddExerciseComponent } from './components/workout/add-exercise/add-exercise.component';
+import { ActivityComponent } from './components/workout/activity/activity.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { AddExerciseComponent } from './components/workout/add-exercise/add-exer
     ShowallComponent,
     CreateComponent,
     ShowComponent,
-    AddExerciseComponent
+    AddExerciseComponent,
+    ActivityComponent
   ],
   imports: [
     BrowserModule,

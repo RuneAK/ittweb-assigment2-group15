@@ -23,6 +23,17 @@ export class ApiService {
     return this.token;
   }
 
+  public isLoggedIn(): boolean {
+    const token = this.getToken();
+    if(token){
+      let payload = token.split('.')[1];
+      payload = window.atob(payload);
+      let user = JSON.parse(payload);
+      return (user.exp > Date.now() / 1000);
+    }
+    return false;
+  }
+
   register(data): Observable<any> {
     let url = `${this.baseUri}/user/register`;
     return this.http.post(url, data).pipe(

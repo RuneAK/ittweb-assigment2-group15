@@ -14,16 +14,16 @@ export class ShowComponent implements OnInit {
 
   constructor(private apiService:ApiService, private router: Router, private ngZone: NgZone) { 
     this.getWorkout();
+    this.apiService.isLoggedIn();
   }
 
   ngOnInit() {
   }
 
   getWorkout(){
-    console.log(this.apiService.currentWorkout);
     this.apiService.show(this.apiService.currentWorkout).subscribe((data) => {
       this.Workout = data['workout'];
-      this.exercies = this.Workout.exercies;
+      this.exercies = this.Workout['exercises'];
     });
   }
 
